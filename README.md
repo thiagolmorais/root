@@ -8,3 +8,4 @@ O Site será sobre uma escola de programação.<br/>
 #Fazer o banco de dados<br/>
 #Fazer cookie<br/>
 #Fazer session<br/>
+#Utilizar model para apresentar relatórios (https://www.w3schools.com/bootstrap/bootstrap_modal.asp).<br/>
