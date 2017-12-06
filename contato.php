@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    session_start();
+
+    if (isset($_SESSION['usuario'])) {
+        unset($_COOKIE['cookie_sitio']);
+        setcookie('cookie_sitio', 'contato', time() + 3600);
+    }
+?>
+
+<!DOCTYPE html>
 <html lang="en"><head>
     <meta charset="utf-8">
     <title>Bootstrap, from Twitter</title>
@@ -63,12 +72,12 @@ include('footer.php');
 server with default setting (user 'root' with no password) */
 //header("location:register.php");
 //*$link = mysqli_connect("localhost", "root", "usbw", "tp2");
- 
+
 // Check connection
 //*if($link === false){
 //*    die("ERROR: Could not connect. " . mysqli_connect_error());
 //*}
- 
+
 // Escape user inputs for security
 //*$u = mysqli_real_escape_string($link, $_REQUEST['username']);
 //*$e = mysqli_real_escape_string($link, $_REQUEST['email']);
@@ -81,7 +90,7 @@ server with default setting (user 'root' with no password) */
 //*} else{
 //*    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 //*}
- 
+
 // close connection
 //*mysqli_close($link);
 ?>

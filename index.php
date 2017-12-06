@@ -1,4 +1,17 @@
 
+<?php
+    session_start();
+
+    if (isset($_SESSION['usuario'])) {
+        if (isset($_COOKIE['cookie_sitio'])) {
+            unset($_COOKIE['cookie_sitio']);
+            header('Location: '.$_COOKIE['cookie_sitio'].'.php');
+        }
+        unset($_COOKIE['cookie_sitio']);
+        setcookie('cookie_sitio', 'index', time() + 3600);
+    }
+    include('header.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,7 +38,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
-
   <body>
 
     <!-- Carousel
@@ -130,7 +142,7 @@
 
 
       <!-- FOOTER -->
-      
+
     </div><!-- /.container -->
 
 
@@ -162,6 +174,5 @@
   </body>
 </html>
 <?php
-include('header.php');
 include('footer.php');
 ?>
