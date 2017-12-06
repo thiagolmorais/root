@@ -10,13 +10,13 @@
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'index', time() + 3600);
     }
-    include('header.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Carousel Template &middot; Bootstrap</title>
+    <title>Story Teller</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -174,5 +174,6 @@
   </body>
 </html>
 <?php
+include('header.php');
 include('footer.php');
 ?>
