@@ -1,12 +1,3 @@
-﻿<?php
-    session_start();
-
-    if (isset($_SESSION['usuario'])) {
-        unset($_COOKIE['cookie_sitio']);
-        setcookie('cookie_sitio', 'contato', time() + 3600);
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,8 +27,12 @@
 
   <body>
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.738240881763!2d-46.41452468501063!3d-24.005018784010424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce1db2e586da8d%3A0x271ae3e10bdc671e!2sFATEC!5e0!3m2!1spt-BR!2sbr!4v1512074849562" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 
@@ -68,12 +63,12 @@ include('footer.php');
 server with default setting (user 'root' with no password) */
 //header("location:register.php");
 //*$link = mysqli_connect("localhost", "root", "usbw", "tp2");
-
+ 
 // Check connection
 //*if($link === false){
 //*    die("ERROR: Could not connect. " . mysqli_connect_error());
 //*}
-
+ 
 // Escape user inputs for security
 //*$u = mysqli_real_escape_string($link, $_REQUEST['username']);
 //*$e = mysqli_real_escape_string($link, $_REQUEST['email']);
@@ -86,7 +81,7 @@ server with default setting (user 'root' with no password) */
 //*} else{
 //*    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 //*}
-
+ 
 // close connection
 //*mysqli_close($link);
 ?>
