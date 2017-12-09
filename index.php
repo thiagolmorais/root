@@ -4,8 +4,9 @@
 
     if (isset($_SESSION['usuario'])) {
         if (isset($_COOKIE['cookie_sitio'])) {
+            $LOCAL = $_COOKIE['cookie_sitio'];
             unset($_COOKIE['cookie_sitio']);
-            header('Location: '.$_COOKIE['cookie_sitio'].'.php');
+            header('Location: '.$LOCAL.'.php');
         }
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'index', time() + 3600);
