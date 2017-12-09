@@ -11,13 +11,13 @@
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'index', time() + 3600);
     }
-    include('header.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Carousel Template &middot; Bootstrap</title>
+    <title>Story Teller</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -82,7 +82,7 @@
 
 
 
-    <!-- Marketing messaging and featurettes
+    <!-- Marketing messaSobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHPging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
@@ -118,7 +118,7 @@
       <div class="featurette">
         <img class="featurette-image pull-right" src="img/php.png">
         <h2 class="featurette-heading">PHP.<span class="muted">Seja rápido.</span></h2>
-        <p class="lead">Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.Sobre o PHP.</p>
+        <p class="lead">PHP (um acrônimo recursivo para "PHP: Hypertext Preprocessor", originalmente Personal Home Page) é uma linguagem interpretada livre, usada originalmente apenas para o desenvolvimento de aplicações presentes e atuantes no lado do servidor, capazes de gerar conteúdo dinâmico na World Wide Web.</p>
       </div>
 
       <hr class="featurette-divider">
@@ -126,7 +126,7 @@
       <div class="featurette">
         <img class="featurette-image pull-left" src="img/python.png">
         <h2 class="featurette-heading">Python. <span class="muted">Seja dinâmico.</span></h2>
-        <p class="lead">Sobre o Python.Sobre o Python.Sobre o Python.Sobre o Python.Sobre o Python.Sobre o Python.Sobre o Python.Sobre o Python.Sobre o Python.Sobre o Python.Sobre o Python.Sobre o Python.</p>
+        <p class="lead">Python é uma linguagem de programação criada por Guido van Rossum em 1991. Os objetivos do projeto da linguagem eram: produtividade e legibilidade. Em outras palavras, Python é uma linguagem que foi criada para produzir código bom e fácil de manter de maneira rápida.</p>
       </div>
 
       <hr class="featurette-divider">
@@ -134,7 +134,7 @@
       <div class="featurette">
         <img class="featurette-image pull-right" src="img/ruby.png">
         <h2 class="featurette-heading">Ruby. <span class="muted">Seja eficiente.</span></h2>
-        <p class="lead">Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.Sobre o Ruby.</p>
+        <p class="lead">Ruby é uma Linguagem de programação interpretada, com tipagem dinâmica e forte, orientada a objetos e, com várias semelhanças com Perl, Python e SmallTalk. Ruby é uma Linguagem de programação interpretada, com tipagem dinâmica e forte, orientada a objetos e, com várias semelhanças com Perl, Python e SmallTalk.</p>
       </div>
 
       <hr class="featurette-divider">
@@ -175,5 +175,6 @@
   </body>
 </html>
 <?php
+include('header.php');
 include('footer.php');
 ?>

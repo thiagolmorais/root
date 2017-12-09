@@ -24,7 +24,8 @@
             <form class="navbar-form pull-right">
               <input class="span2" type="text" placeholder="Email">
               <input class="span2" type="password" placeholder="Password">
-              <button type="submit" class="btn">Sign in</button>
+              <button type="submit" class="btn btn-success">Entrar</button>
+              <a href="create.php"><button type="button" class="btn" >Cadastrar</button><a>
             </form>
           </div><!--/.nav-collapse -->
         </div>
