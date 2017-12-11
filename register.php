@@ -44,24 +44,73 @@
 		<h1 align="center">Novo usuário</h1>
 		<hr/>
 
-		<form action="home.php" method="GET">
-			<div class="form-group">
-				<label for="username">Nome de usuário:</label>
-				<input type="text" class="form-control" name="username" id="username" placeholder="exemplo123" required/>
-			</div>
+		<form action="store.php" method="GET">
+            <input type="hidden" name="codigo" value=""/>
+
+            <div class="form-group">
+                <label for="usr">CPF:</label>
+                <input type="number" class="form-control" name="cpf" id="usr" pattern="[0-9]{11}" placeholder="ex: 12345678900" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="usr">Nome Completo:</label>
+                <input type="text" class="form-control" name="nome" id="fullname" placeholder="ex: Jose Silva" pattern="[A-Za-z ]+" required>
+            </div>
+
+            <div class="form-group">
+                <label for="usr">Data de Nascimento:</label>
+                <input type="date" class="form-control" name="nascimento" id="usr" placeholder="ex: 01/01/2001" required>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Endereço:</label>
+                <textarea class="form-control" name="endereco" rows="5" id="comment" placeholder="ex: Rua 123, Bairro 456, Ap. 1, Cidade A, Estado B" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <p>Gênero:</p>
+                <div class="radio" checked="checked">
+                    <label><input type="radio" name="genero" value="Masculino">Masculino</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="genero" value="Feminino">Feminino</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="genero" value="Outro">Outro</label>
+                </div>
+            </div>
+
 			<div class="form-group">
 				<label for="email">Email:</label>
-				<input type="email" class="form-control" name="email" id="email" placeholder="exemplo@gmail.com" name="email" required/>
+				<input type="email" class="form-control" name="email" id="email" placeholder="ex: Jose123@gmail.com" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required/>
 			</div>
+
+            <div class="form-group">
+                <label for="username">Nome de usuário:</label>
+                <input type="text" class="form-control" name="usuario" id="username" placeholder="ex: Jose123" pattern="[A-Za-z0-9]+" required/>
+            </div>
+
 			<div class="form-group">
 				<label for="pwd">Senha:</label>
-				<input type="password" class="form-control" name="password" id="password" required/>
+				<input type="password" class="form-control" name="senha" id="password" pattern=".{6,}" placeholder="ex: abc123" required/>
 			</div>
+
 			<div class="form-group">
 				<label for="pwd">Confirmar Senha:</label>
-				<input type="password" class="form-control" name="confirm_password" id="confirm_password" required/>
+				<input type="password" class="form-control" name="confirmar_senha" id="confirm_password" required/>
 			</div>
-			<br/><button type="submit" class="btn btn-default">Gravar</button>
+            
+            <div class="form-group">
+            <label for="cursos">Selecione o(s) curso(s):</label>
+            <select multiple class="form-control" id="cursos" name="curso" required>
+                <option>PHP</option>
+                <option>Python</option>
+                <option>Ruby</option>
+            </select>
+            </div>
+
+			<br/><button type="submit" class="btn btn-default">Cadastrar</button>
+            <button type="reset" class="btn btn-default">Limpar</button>
 		</form>
 		</div>
 	</div>

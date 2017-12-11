@@ -8,10 +8,11 @@
     die("Falha ao conectar");	
   } else {
     // Utilizar comandos preparados é uma forma mais segura de se trabalhar com banco de dados. mysqli_prepare envia para o banco de dados o comando a ser processado, mas sem os dados (representados por parâmetros - "?"). O banco de dados compila e prepara o comando para execução.  
-    $ps = mysqli_prepare($con,"INSERT ALUNO VALUES (?,?,?,?,?,?,?,?)");
-    // mysqli_stmt_bind_param associa variáveis (no caso posições do vetor $_POST) aos parâmetros ("?") do comando preparado. O segundo parâmetro ("iss") indica os tipos dos parâmetros, no caso: inteito, string e string.
-    mysqli_stmt_bind_param($ps,"isssssss",$_POST['id'],$_POST['nome'],$_POST['cpf'],$_POST['nascimento'],$_POST['email'],$_POST['genero'],$_POST['observacao'],$_POST['curso']);
+    $ps = mysqli_prepare($con,"INSERT ALUNO VALUES (?,?,?,?,?,?,?,?,?,?)");
+    // mysqli_stmt_bind_param associa variáveis (no caso posições do vetor $_GET) aos parâmetros ("?") do comando preparado. O segundo parâmetro ("iss") indica os tipos dos parâmetros, no caso: inteito, string e string.
+    mysqli_stmt_bind_param($ps,"isssssssss",$_GET['codigo'],$_GET['cpf'],$_GET['nome'],$_GET['nascimento'],$_GET['endereco'],$_GET['genero'],$_GET['email'],$_GET['usuario'],$_GET['senha'],$_GET['curso']);
     // mysqli_stmt_execute envia ao banco de dados os valores das variáveis associadas aos parâmetros. O banco de dados executa o comando.
     mysqli_stmt_execute($ps);
+    echo "<script>alert('Cadastro efetuado com sucesso! Agora efetue o login com seus dados.');</script>";
   }
 ?>

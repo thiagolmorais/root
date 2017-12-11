@@ -8,26 +8,76 @@
    <?php
      // Ver comentário sobre mysqli_prepare, mysqli_stmt_bind_param e mysqli_stmt_execute em store.php
      $con = @ mysqli_connect("localhost","root","usbw","escola");
-     $ps = mysqli_prepare($con,"select id, nome, cpf, nascimento, email, genero, observacao, curso from aluno where id=?");
-     mysqli_stmt_bind_param($ps,"i",$_GET['id']);
+     $ps = mysqli_prepare($con,"select cd_cpf, nm_aluno, dt_nascimento, ds_endereco, nm_genero, nm_email, nm_senha from aluno where cd_aluno=?");
+     mysqli_stmt_bind_param($ps,"i",$_GET['codigo']);
      mysqli_stmt_execute($ps);
      // mysqli_stmt_bind_result associa variáveis às colunas selecionadas no select (nome e endereço, no caso)
-     mysqli_stmt_bind_result($ps,$id,$nome,$cpf,$nascimento,$email,$genero,$observacao,$curso);
+     mysqli_stmt_bind_result($ps,$codigo,$cpf,$nome,$nascimento,$endereco,$genero,$email,$genero,$senha);
      // O comando fetch recupera a únida linha resultante do select (no caso foi realizado where pela chave primária) e carrega as respectivas variáveis associadas pelo comando mysqli_stmt_bind_result
      mysqli_stmt_fetch($ps);
      /* No HTML abaixo, <?= $variavel ?> é uma forma resumida para obter o valor da variável.*/
    ?>
-   <form action="update.php" method="post">
-    <label>RA<input type="number" name="id" min="1" value="<?= $_GET['id'] ?>" /></label><br/>
-     <label>Nome<input type="text" name="nome" maxlength="100" pattern="[A-Za-z ]+" value="<?= $nome ?>"/></label><br/>
-     <label>CPF<input type="text" name="cpf" maxlength="100" pattern="[A-Za-z ]+" value="<?= $cpf ?>"/></label><br/>
-     <label>Nascimento<input type="text" name="nascimento" maxlength="100" pattern="[A-Za-z ]+" value="<?= $nascimento ?>"/></label><br/>
-     <label>Email<input type="text" name="email" maxlength="100" pattern="[A-Za-z ]+" value="<?= $email ?>"/></label><br/>
-     <label>Genero<input type="text" name="genero" maxlength="100" pattern="[A-Za-z ]+" value="<?= $genero ?>"/></label><br/>
-     <label>Observacao<input type="text" name="observacao" maxlength="100" pattern="[A-Za-z ]+" value="<?= $observacao ?>"/></label><br/>
-     <label>Curso<input type="text" name="curso" maxlength="100" pattern="[A-Za-z ]+" value="<?= $curso ?>"/></label><br/>
-     <input type="submit" value="Enviar"/>
-     <input type="reset" value="Limpar"/>
-   </form>
+
+   <div class="container">
+        <div class="hero-unit">
+        <h1 align="center">Atualizar Dados</h1>
+        <hr/>
+
+        <form action="update.php" method="GET">
+            <input type="hidden" name="codigo" value="<?= $_GET['codigo'] ?>"/>
+
+            <div class="form-group">
+                <label for="usr">CPF:</label>
+                <input type="number" class="form-control" name="cpf" id="usr" pattern="[0-9]{11}" placeholder="ex: 12345678900" value="<?= $cpf ?>" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="usr">Nome Completo:</label>
+                <input type="text" class="form-control" name="nome" id="fullname" placeholder="ex: Jose Silva" pattern="[A-Za-z ]+" value="<?= $nome ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="usr">Data de Nascimento:</label>
+                <input type="date" class="form-control" name="nascimento" id="usr" placeholder="ex: 01/01/2001" value="<?= $nascimento ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Endereço:</label>
+                <textarea class="form-control" name="endereco" rows="5" id="comment" placeholder="ex: Rua 123, Bairro 456, Ap. 1, Cidade A, Estado B" value="<?= $endereco ?>" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <p>Gênero:</p>
+                <div class="radio">
+                    <label><input type="radio" name="genero">Masculino</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="genero">Feminino</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="genero">Outro</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="ex: Jose123@gmail.com" name="email" value="<?= $email ?>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="pwd">Senha:</label>
+                <input type="password" class="form-control" name="senha" id="password" pattern=".{6,}" placeholder="ex: abc123" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="pwd">Confirmar Senha:</label>
+                <input type="password" class="form-control" name="confirmar_senha" id="confirm_password" required/>
+            </div>
+
+            <br/><button type="submit" class="btn btn-default">Atualizar</button>
+            <button type="reset" class="btn btn-default">Limpar</button>
+        </form>
+        </div>
+    </div>
 </body>
 </html>
