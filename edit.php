@@ -9,10 +9,10 @@
      // Ver comentário sobre mysqli_prepare, mysqli_stmt_bind_param e mysqli_stmt_execute em store.php
      $con = @ mysqli_connect("localhost","root","usbw","escola");
      $ps = mysqli_prepare($con,"select cd_cpf, nm_aluno, dt_nascimento, ds_endereco, nm_genero, nm_email, nm_senha from aluno where cd_aluno=?");
-     mysqli_stmt_bind_param($ps,"i",$_GET['codigo']);
+     mysqli_stmt_bind_param($ps,"i",$_GET['cd_aluno']);
      mysqli_stmt_execute($ps);
      // mysqli_stmt_bind_result associa variáveis às colunas selecionadas no select (nome e endereço, no caso)
-     mysqli_stmt_bind_result($ps,$codigo,$cpf,$nome,$nascimento,$endereco,$genero,$email,$genero,$senha);
+     mysqli_stmt_bind_result($ps,$cpf,$nome,$nascimento,$endereco,$genero,$email,$senha);
      // O comando fetch recupera a únida linha resultante do select (no caso foi realizado where pela chave primária) e carrega as respectivas variáveis associadas pelo comando mysqli_stmt_bind_result
      mysqli_stmt_fetch($ps);
      /* No HTML abaixo, <?= $variavel ?> é uma forma resumida para obter o valor da variável.*/
@@ -24,7 +24,7 @@
         <hr/>
 
         <form action="update.php" method="GET">
-            <input type="hidden" name="codigo" value="<?= $_GET['codigo'] ?>"/>
+            <input type="hidden" name="codigo" value="<?= $_GET['cd_aluno'] ?>" readonly/>
 
             <div class="form-group">
                 <label for="usr">CPF:</label>

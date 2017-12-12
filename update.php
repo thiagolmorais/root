@@ -8,8 +8,8 @@
     die("Falha ao conectar");	
   } else {
     // Ver comentário sobre mysqli_prepare, mysqli_stmt_bind_param e mysqli_stmt_execute em store.php
-    $ps = mysqli_prepare($con,"UPDATE ALUNO SET cd_cpf=?, nm_aluno=?, dt_nascimento=?, ds_endereco=?, nm_genero=?, nm_email=?, nm_senha=? where cd_aluno=?");
-    mysqli_stmt_bind_param($ps,"sssssss",$_GET['cpf'],$_GET['nome'],$_GET['nascimento'],$_GET['endereco'],$_GET['genero'],$_GET['email'],$_GET['senha']);
+    $ps = mysqli_prepare($con,"UPDATE ALUNO SET cd_cpf=?, nm_aluno=?, dt_nascimento=?, ds_endereco=?, nm_genero=?, nm_email=?, nm_usuario=?, nm_senha=?, nm_curso=? where cd_aluno=?");
+    mysqli_stmt_bind_param($ps,"sssssssssi",$_GET['cpf'],$_GET['nome'],$_GET['nascimento'],$_GET['endereco'],$_GET['genero'],$_GET['email'],$_GET['usuario'],$_GET['senha'],$_GET['curso'],$_GET['codigo']);
     mysqli_stmt_execute($ps);
   }
 ?>

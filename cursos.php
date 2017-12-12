@@ -26,6 +26,7 @@
   </head>
 
   <body>
+    <input type="hidden" name="codigo" value="<?= $_GET['cd_aluno'] ?> "/>
 
 <br/>
 <br/>
@@ -33,8 +34,6 @@
 <br/>
 <br/>
 <br/>
-
-
 
     <!-- Le javascript
     ================================================== -->
@@ -59,6 +58,21 @@
 <?php
 include('header.php');
 include('footer.php');
+//Para executar este aplicativo, criar no Mysql banco de dados "escola" e a tabela "aluno" por meio do comando: create table aluno (id int not null primary key, nome varchar(100) not null, endereco varchar(100) not null)
+// mysqli_connect abre conexão com Mysql. Há quatro parâmetros: servidor, usuário, senha, banco
+$con = @ mysqli_connect("localhost","root","usbw","escola");
+if ($con == null ) {
+  // Se conexão null, houve erro
+  die("Falha ao conectar"); 
+} else {
+  echo "<a href='create.php'>Criar</a><br/><br/>";
+  // mysqli_query envia para o Mysql o texto de um comando SQL. No caso de Select, retorna a tabela resultante.
+  $tab = mysqli_query($con,"select cd_aluno, nm_aluno, nm_curso from aluno");
+  // Cada iteração do loop abaixo obtém uma linha da tabela resultante do Select e envia seus dados ao navegador. $lin é uma vetor com índices correspondendo ao nome das colunas (id, nome, endereco) e contéudo com seus respectivos dados.
+  while ($lin = mysqli_fetch_assoc($tab)) {
+    echo $lin['nm_aluno']." - ".$lin['nm_curso']." <a href='edit.php?cd_aluno=".$lin['cd_aluno']."'>Editar</a> <a href='delete.php?id=".$lin['cd_aluno']."'>Excluir</a><br/>";
+  }
+}
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
 //header("location:register.php");

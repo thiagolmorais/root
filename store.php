@@ -13,6 +13,5 @@
     mysqli_stmt_bind_param($ps,"isssssssss",$_GET['codigo'],$_GET['cpf'],$_GET['nome'],$_GET['nascimento'],$_GET['endereco'],$_GET['genero'],$_GET['email'],$_GET['usuario'],$_GET['senha'],$_GET['curso']);
     // mysqli_stmt_execute envia ao banco de dados os valores das variáveis associadas aos parâmetros. O banco de dados executa o comando.
     mysqli_stmt_execute($ps);
-    echo "<script>alert('Cadastro efetuado com sucesso! Agora efetue o login com seus dados.');</script>";
   }
 ?>
