@@ -46,41 +46,55 @@
     <form action="store.php" method="GET">
       <div class="form-group">
         <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome">
+        <input type="text" class="form-control" id="nome" name="nome">
       </div>
       <div class="form-group">
         <label for="cpf">CPF</label>
-        <input type="text" class="form-control" id="cpf" pattern="\d{11}">
+        <input type="text" class="form-control" id="cpf" pattern="\d{11}" name="cpf">
       </div>
        <div class="form-group">
         <label for="nascimento">Data de Nascimento</label>
-        <input type="date" class="form-control" id="nascimento">
+        <input type="date" class="form-control" id="nascimento" name="nascimento">
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" class="form-control" id="email" placeholder="exemplo@gmail.com" name="email">
       </div>
 
+      <div class="form-group">
+        <label for="user">username:</label>
+        <input type="text" class="form-control" id="user" name="user">
+      </div>
+
+      <div class="form-group">
+        <label for="pwd">Senha:</label>
+        <input type="password" class="form-control" id="pwd" name="pwd">
+      </div>
+
+      <div class="form-group">
+        <label for="repwd">Repita a Senha:</label>
+        <input type="password" class="form-control" id="repwd" name="repwd">
+      </div>
+
       <legend>Gênero:</legend>
       <div class="radio" id="mark">
-        <label><input type="radio" name="genero" checked="checked">Masculino</label>
+        <label><input type="radio" name="genero" checked="checked" value='Masculino'>Masculino</label>
       </div>
       <div class="radio">
-        <label><input type="radio" name="genero">Feminino</label>
+        <label><input type="radio" name="genero" value='Feminino'>Feminino</label>
       </div>
       <div class="radio">
-        <label><input type="radio" name="genero">Outro</label>
+        <label><input type="radio" name="genero" value='Outro'>Outro</label>
       </div>
       <label for="sel1">Selecione o curso:</label>
-      <select class="form-control" id="select">
-        <option>ADS</option>
-        <option>PQ</option>
-        <option>GE</option>
-        <option>COMEX</option>
+      <select name='curso' class="form-control" id="select">
+        <option value='Python'>Python</option>
+        <option value='Ruby'>Ruby</option>
+        <option value='PHP'>PHP</option>
       </select>
        <div class="form-group">
-      <legend>Observação</legend>
-        <textarea class="form-control" rows="5" id="observacao" name="observacao"></textarea>
+      <legend>Endereço</legend>
+        <textarea class="form-control" rows="5" id="endereco" name="endereco"></textarea>
       </div>
       <br/><button type="submit" class="btn btn-default">Gravar</button>
     </form>

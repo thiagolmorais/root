@@ -12,6 +12,6 @@ CREATE TABLE aluno
 	mn_genero VARCHAR(10) NOT NULL,
 	nm_email VARCHAR(30) NOT NULL UNIQUE,
 	nm_usuario VARCHAR(20) NOT NULL UNIQUE,
-	nm_senha VARCHAR(20) NOT NULL,
+	nm_senha VARCHAR(100) NOT NULL,
 	nm_curso VARCHAR(20) NOT NULL
 );
