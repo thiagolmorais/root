@@ -3,7 +3,9 @@
 
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
-        setcookie('cookie_sitio', 'contato', time() + 3600);
+        setcookie('cookie_sitio', 'edit', time() + 3600);
+    } else {
+      unset($_COOKIE['cookie_sitio']);
     }
 ?>
 <!DOCTYPE html>
@@ -38,7 +40,7 @@
                 <label for="usr">CPF:</label>
                 <input type="number" class="form-control" name="cpf" id="usr" pattern="[0-9]{11}" placeholder="ex: 12345678900" value="<?= $cpf ?>" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="usr">Nome Completo:</label>
                 <input type="text" class="form-control" name="nome" id="fullname" placeholder="ex: Jose Silva" pattern="[A-Za-z ]+" value="<?= $nome ?>" required>

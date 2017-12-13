@@ -3,11 +3,10 @@
 
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
-        setcookie('cookie_sitio', 'contato', time() + 3600);
+        setcookie('cookie_sitio', 'relatorio', time() + 3600);
+    } else {
+      unset($_COOKIE['cookie_sitio']);
     }
-
-    
-
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +50,9 @@
   <th>Email</th>
   <th>Genero</th>
   <th>Curso</th>
-  <th>Observação</th>   
-  <th></th> 
-  <th></th> 
+  <th>Observação</th>
+  <th></th>
+  <th></th>
 </tr>
 
 <tr>
@@ -74,9 +73,9 @@
         $con = @ mysqli_connect("localhost","root","usbw","escola");
         if ($con == null ) {
           // Se conexão null, houve erro
-          die("Falha ao conectar"); 
+          die("Falha ao conectar");
         } else {
-          
+
           // mysqli_query envia para o Mysql o texto de um comando SQL. No caso de Select, retorna a tabela resultante.
           $tab = mysqli_query($con,"select nome, cpf, nascimento, email, genero, curso, observacao from aluno");
           // Cada iteração do loop abaixo obtém uma linha da tabela resultante do Select e envia seus dados ao navegador. $lin é uma vetor com índices correspondendo ao nome das colunas (id, nome, endereco) e contéudo com seus respectivos dados.

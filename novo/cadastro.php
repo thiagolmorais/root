@@ -3,7 +3,9 @@
 
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
-        setcookie('cookie_sitio', 'contato', time() + 3600);
+        setcookie('cookie_sitio', 'cadastro', time() + 3600);
+    } else {
+      unset($_COOKIE['cookie_sitio']);
     }
 ?>
 <!DOCTYPE html>
@@ -84,7 +86,7 @@
     </form>
   </div>
 
-    
+
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

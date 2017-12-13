@@ -1,9 +1,8 @@
 <?php
     session_start();
-
     if (isset($_SESSION['usuario'])) {
-        unset($_COOKIE['cookie_sitio']);
-        setcookie('cookie_sitio', 'contato', time() + 3600);
+    } else {
+      unset($_COOKIE['cookie_sitio']);
     }
 ?>
 <!DOCTYPE html>
@@ -34,11 +33,7 @@
   </head>
 
   <body>
-
-
-
     <div class="container">
-
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>Venha para Story Teller.</h1>
@@ -47,7 +42,7 @@
 
       <!-- Example row of columns -->
       <div class="row">
-      
+
         <div class="span4">
           <img class="liguagens" src="img/ruby.png">
         </div><!-- /.span4 -->
@@ -65,7 +60,7 @@
           <h2>Ruby</h2>
           <p class="desc_linguagens">Ruby é uma Linguagem de programação interpretada, com tipagem dinâmica e forte, orientada a objetos e, com várias semelhanças com Perl, Python e SmallTalk. Ruby é uma Linguagem de programação interpretada, com tipagem dinâmica e forte, orientada a objetos e, com várias semelhanças com Perl, Python e SmallTalk.</p>
         </div>
-        
+
         <div class="span4">
           <h2>PHP</h2>
           <p class="desc_linguagens">PHP (um acrônimo recursivo para "PHP: Hypertext Preprocessor", originalmente Personal Home Page) é uma linguagem interpretada livre, usada originalmente apenas para o desenvolvimento de aplicações presentes e atuantes no lado do servidor, capazes de gerar conteúdo dinâmico na World Wide Web.</p>
