@@ -50,7 +50,7 @@
   <th>Email</th>
   <th>Genero</th>
   <th>Curso</th>
-  <th>Observação</th>
+  <th>Endereco</th>
   <th></th>
   <th></th>
 </tr>
@@ -62,15 +62,16 @@
  <td>$lin['email']</td>
  <td>$lin['genero']</td>
  <td>$lin['curso']</td>
- <td>$lin['observacao']</td>
+ <td>$lin['endereco']</td>
  <td><button class="btn btn-primary ">Editar</td>
  <td><button class="btn btn-danger ">Excluir</td>
 </tr>
 
 <?php
+        include 'conecta.php';
  //Para executar este aplicativo, criar no Mysql banco de dados "escola" e a tabela "aluno" por meio do comando: create table aluno (id int not null primary key, nome varchar(100) not null, endereco varchar(100) not null)
         // mysqli_connect abre conexão com Mysql. Há quatro parâmetros: servidor, usuário, senha, banco
-        $con = @ mysqli_connect("localhost","root","usbw","escola");
+        $con = conecta();
         if ($con == null ) {
           // Se conexão null, houve erro
           die("Falha ao conectar");
