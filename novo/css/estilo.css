@@ -1,0 +1,22 @@
+<style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+          body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+
+    .liguagens {
+      width: 50%;
+      height: 50%;
+      margin-left: 100px;
+    }
+
+    .desc_linguagens{
+      text-align: justify;
+    }
+
+    </style>
