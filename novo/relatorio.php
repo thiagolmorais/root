@@ -42,31 +42,6 @@
 <br/>
 
 <div class="container">
-<table class="table table-striped">
-<tr>
-  <th>Nome</th>
-  <th>CPF</th>
-  <th>Data de Nascimento</th>
-  <th>Email</th>
-  <th>Genero</th>
-  <th>Curso</th>
-  <th>Endereco</th>
-  <th></th>
-  <th></th>
-</tr>
-
-<tr>
- <td>$lin['nome']</td>
- <td>$lin['cpf']</td>
- <td>$lin['nascimento']</td>
- <td>$lin['email']</td>
- <td>$lin['genero']</td>
- <td>$lin['curso']</td>
- <td>$lin['endereco']</td>
- <td><button class="btn btn-primary ">Editar</td>
- <td><button class="btn btn-danger ">Excluir</td>
-</tr>
-
 <?php
         include 'conecta.php';
  //Para executar este aplicativo, criar no Mysql banco de dados "escola" e a tabela "aluno" por meio do comando: create table aluno (id int not null primary key, nome varchar(100) not null, endereco varchar(100) not null)
@@ -78,13 +53,47 @@
         } else {
 
           // mysqli_query envia para o Mysql o texto de um comando SQL. No caso de Select, retorna a tabela resultante.
-          $tab = mysqli_query($con,"select nome, cpf, nascimento, email, genero, curso, observacao from aluno");
+          $tab = mysqli_query($con,"select nm_aluno, cd_cpf, dt_nascimento, nm_email, nm_curso from aluno");
           // Cada iteração do loop abaixo obtém uma linha da tabela resultante do Select e envia seus dados ao navegador. $lin é uma vetor com índices correspondendo ao nome das colunas (id, nome, endereco) e contéudo com seus respectivos dados.
-          while ($lin = mysqli_fetch_assoc($tab)) {
-            echo $lin['nome']." - ".$lin['cpf']." - ".$lin['nascimento']." - ".$lin['email']." - ".$lin['genero']." - ".$lin['curso']." - ".$lin['observacao']."
-            <a href='edit.php?nome=".$lin['nome']."'>Editar</a> <a href='delete.php?nome=".$lin['nome']."'>Excluir</a><br/>";
-          }
+          
+           /* echo $lin['nm_aluno']." - ".$lin['cd_cpf']." - ".$lin['dt_nascimento']." - ".$lin['nm_email']." - ".$lin['nm_curso']."
+            <a href='edit.php?nome=".$lin['nm_aluno']."'>Editar</a> <a href='delete.php?nome=".$lin['nm_aluno']."'>Excluir</a><br/>";*/
+          
+
+//crie uma variável para receber o código da tabela
+    $tabela = '<table class="table table-striped">';//abre table
+    $tabela .='<thead>';//abre cabeçalho
+    $tabela .= '<tr>';//abre uma linha
+    $tabela .= '<th>Nome</th>'; // colunas do cabeçalho
+    $tabela .= '<th>CPF</th>';
+    $tabela .= '<th>Data de Nascimento</th>';
+    $tabela .= '<th>Email</th>';
+    $tabela .= '<th>Curso</th>';
+    $tabela .= '<th></th>';
+    $tabela .= '<th></th>';
+    $tabela .= '</tr>';//fecha linha
+    $tabela .='</thead>'; //fecha cabeçalho
+    $tabela .='<tbody>';//abre corpo da tabela
+    /*Se você tiver um loop para exibir os dados ele deve ficar aqui*/
+
+
+while ($lin = mysqli_fetch_assoc($tab)) {
+    $tabela .= '<tr>'; // abre uma linha
+    $tabela .= '<td>'.$lin['nm_aluno'].'</td>'; //coluna numero
+    $tabela .= '<td>'.$lin['cd_cpf'].'</td>'; // coluna validade
+    $tabela .= '<td>'.$lin['dt_nascimento'].'</td>'; //coluna anexo
+    $tabela .= '<td>'.$lin['nm_email'].'</td>';//coluna valor numero
+    $tabela .= '<td>'.$lin['nm_curso'].'</td>'; // coluna data
+    $tabela .= '<td><button class="btn btn-primary">Editar</td>'; // coluna data
+    $tabela .= '<td><button class="btn btn-danger">Excluir</td>';
+    $tabela .= '</tr>'; // fecha linha
+    }/*loop deve terminar aqui*/
+    $tabela .='</tbody>'; //fecha corpo
+    $tabela .= '</table>';//fecha tabela
+
+    echo $tabela; // imprime
         }
+
   ?>
 </table>
 </div>
