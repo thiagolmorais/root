@@ -1,9 +1,5 @@
 <?php
-    session_start();
-    if (isset($_SESSION['usuario'])) {
-    } else {
-      unset($_COOKIE['cookie_sitio']);
-    }
+include('header.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,6 +95,5 @@
   </body>
 </html>
 <?php
-include('header.php');
 include('footer.php');
 ?>

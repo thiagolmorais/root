@@ -1,11 +1,7 @@
 ﻿<?php
-    session_start();
-
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'contato', time() + 3600);
-    } else {
-      unset($_COOKIE['cookie_sitio']);
     }
 ?>
 
@@ -42,10 +38,10 @@
 <br/>
 <div class="container">
 
-            
+
 
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.738102057435!2d-46.414524685432625!3d-24.005023684464437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce1db2e586da8d%3A0x271ae3e10bdc671e!2sFATEC!5e0!3m2!1sen!2sbr!4v1513214162858" width=100% height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-            
+
 
             <p>Praça 19 de Janeiro, 144 - Boqueirão, Praia Grande</p>
             <p><img src="img/phone.png"> (13) 0800-0000</p>

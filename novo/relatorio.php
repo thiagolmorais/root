@@ -1,11 +1,8 @@
 <?php
-    session_start();
 
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'relatorio', time() + 3600);
-    } else {
-      unset($_COOKIE['cookie_sitio']);
     }
 ?>
 
@@ -55,10 +52,10 @@
           // mysqli_query envia para o Mysql o texto de um comando SQL. No caso de Select, retorna a tabela resultante.
           $tab = mysqli_query($con,"select nm_aluno, cd_cpf, dt_nascimento, nm_email, nm_curso from aluno");
           // Cada iteração do loop abaixo obtém uma linha da tabela resultante do Select e envia seus dados ao navegador. $lin é uma vetor com índices correspondendo ao nome das colunas (id, nome, endereco) e contéudo com seus respectivos dados.
-          
+
            /* echo $lin['nm_aluno']." - ".$lin['cd_cpf']." - ".$lin['dt_nascimento']." - ".$lin['nm_email']." - ".$lin['nm_curso']."
             <a href='edit.php?nome=".$lin['nm_aluno']."'>Editar</a> <a href='delete.php?nome=".$lin['nm_aluno']."'>Excluir</a><br/>";*/
-          
+
 
 //crie uma variável para receber o código da tabela
     $tabela = '<table class="table table-striped">';//abre table

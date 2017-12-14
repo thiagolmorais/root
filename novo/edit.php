@@ -1,11 +1,7 @@
 <?php
-    session_start();
-
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'edit', time() + 3600);
-    } else {
-      unset($_COOKIE['cookie_sitio']);
     }
 ?>
 <!DOCTYPE html>

@@ -1,7 +1,10 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Story Teller</title>
 </head>
 <body>
 <header>
@@ -21,11 +24,24 @@
               <li><a href="relatorio.php">Relatório</a></li>
               <li><a href="contato.php">Contatos</a></li>
             </ul>
-            <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Email">
-              <input class="span2" type="password" placeholder="Password">
-              <button type="submit" class="btn btn-success">Login</button>
-            </form>
+            <?php
+              if (isset($_SESSION['usuario'])) {
+                echo "<div class='pull-right'>
+                        <p>
+                          Bem vindo {$_SESSION['usuario']}
+                          <a href='login.php?destroi=1'> Sair</a>
+                        </p>
+                        ";
+              } else {
+                echo "<form class='navbar-form pull-right' action='login.php' method='POST'>
+                        <input class='span2' type='text' placeholder='Email' name='email'>
+                        <input class='span2' type='password' placeholder='Password' name='pwd'>
+                        <button type='submit' class='btn btn-success'>Login</button>
+                      </form>";
+                //session_destroy();
+                unset($_COOKIE['cookie_sitio']);
+              }
+            ?>
           </div><!--/.nav-collapse -->
         </div>
       </div>

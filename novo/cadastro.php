@@ -1,11 +1,7 @@
 <?php
-    session_start();
-
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'cadastro', time() + 3600);
-    } else {
-      unset($_COOKIE['cookie_sitio']);
     }
 ?>
 <!DOCTYPE html>
@@ -43,7 +39,7 @@
 
   <div class="container">
     <h2>Formulário de cadastro</h2>
-    <form action="store.php" method="GET">
+    <form action="store.php" method="POST">
       <div class="form-group">
         <label for="nome">Nome</label>
         <input type="text" class="form-control" id="nome" name="nome">
