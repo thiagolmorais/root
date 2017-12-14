@@ -1,4 +1,6 @@
 <?php
+include('header.php');
+
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'cadastro', time() + 3600);
@@ -117,6 +119,5 @@
   </body>
 </html>
 <?php
-include('header.php');
 include('footer.php');
 ?>

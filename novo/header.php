@@ -27,9 +27,9 @@
             <?php
               if (isset($_SESSION['usuario'])) {
                 echo "<div class='pull-right'>
-                        <p>
-                          Bem vindo {$_SESSION['usuario']}
-                          <a href='login.php?destroi=1'> Sair</a>
+                        <p class='apnome'>
+                          Bem vindo {$_SESSION['usuario']} :
+                          <a href='login.php?destroi=1'><button class='btn btn-danger'>Sair</button></a>
                         </p>
                         ";
               } else {

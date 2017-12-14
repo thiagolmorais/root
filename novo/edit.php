@@ -1,89 +1,116 @@
 <?php
+include('header.php');
+
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'edit', time() + 3600);
     }
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title></title>
-</head>
-<body>
-   <?php
-     // Ver comentário sobre mysqli_prepare, mysqli_stmt_bind_param e mysqli_stmt_execute em store.php
-     $con = @ mysqli_connect("localhost","root","usbw","escola");
-     $ps = mysqli_prepare($con,"select cd_cpf, nm_aluno, dt_nascimento, ds_endereco, nm_genero, nm_email, nm_senha from aluno where cd_aluno=?");
-     mysqli_stmt_bind_param($ps,"i",$_GET['cd_aluno']);
-     mysqli_stmt_execute($ps);
-     // mysqli_stmt_bind_result associa variáveis às colunas selecionadas no select (nome e endereço, no caso)
-     mysqli_stmt_bind_result($ps,$cpf,$nome,$nascimento,$endereco,$genero,$email,$senha);
-     // O comando fetch recupera a únida linha resultante do select (no caso foi realizado where pela chave primária) e carrega as respectivas variáveis associadas pelo comando mysqli_stmt_bind_result
-     mysqli_stmt_fetch($ps);
-     /* No HTML abaixo, <?= $variavel ?> é uma forma resumida para obter o valor da variável.*/
-   ?>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-   <div class="container">
-        <div class="hero-unit">
-        <h1 align="center">Atualizar Dados</h1>
-        <hr/>
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
 
-        <form action="update.php" method="GET">
-            <input type="hidden" name="codigo" value="<?= $_GET['cd_aluno'] ?>" readonly/>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-            <div class="form-group">
-                <label for="usr">CPF:</label>
-                <input type="number" class="form-control" name="cpf" id="usr" pattern="[0-9]{11}" placeholder="ex: 12345678900" value="<?= $cpf ?>" required>
-            </div>
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+  </head>
 
-            <div class="form-group">
-                <label for="usr">Nome Completo:</label>
-                <input type="text" class="form-control" name="nome" id="fullname" placeholder="ex: Jose Silva" pattern="[A-Za-z ]+" value="<?= $nome ?>" required>
-            </div>
+  <body>
 
-            <div class="form-group">
-                <label for="usr">Data de Nascimento:</label>
-                <input type="date" class="form-control" name="nascimento" id="usr" placeholder="ex: 01/01/2001" value="<?= $nascimento ?>" required>
-            </div>
+<br/>
+<br/>
+<br/>
+<?php
+        include 'conecta.php';
+ //Para executar este aplicativo, criar no Mysql banco de dados "escola" e a tabela "aluno" por meio do comando: create table aluno (id int not null primary key, nome varchar(100) not null, endereco varchar(100) not null)
+        // mysqli_connect abre conexão com Mysql. Há quatro parâmetros: servidor, usuário, senha, banco
+        $con = conecta();
+        if ($con == null ) {
+          // Se conexão null, houve erro
+          die("Falha ao conectar");
+        } else {
 
-            <div class="form-group">
-                <label for="comment">Endereço:</label>
-                <textarea class="form-control" name="endereco" rows="5" id="comment" placeholder="ex: Rua 123, Bairro 456, Ap. 1, Cidade A, Estado B" value="<?= $endereco ?>" required></textarea>
-            </div>
+          // mysqli_query envia para o Mysql o texto de um comando SQL. No caso de Select, retorna a tabela resultante.
+          $tab = mysqli_query($con,"SELECT nm_aluno, cd_cpf, dt_nascimento, nm_email, nm_usuario, mn_genero,nm_curso, ds_endereco FROM aluno WHERE cd_aluno='{$_GET['cd_aluno']}'");
+          // Cada iteração do loop abaixo obtém uma linha da tabela resultante do Select e envia seus dados ao navegador. $lin é uma vetor com índices correspondendo ao nome das colunas (id, nome, endereco) e contéudo com seus respectivos dados.
 
-            <div class="form-group">
-                <p>Gênero:</p>
-                <div class="radio">
-                    <label><input type="radio" name="genero">Masculino</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="genero">Feminino</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="genero">Outro</label>
-                </div>
-            </div>
+          $lin = mysqli_fetch_assoc($tab);
+           /* echo $lin['nm_aluno']." - ".$lin['cd_cpf']." - ".$lin['dt_nascimento']." - ".$lin['nm_email']." - ".$lin['nm_curso']."
+            <a href='edit.php?nome=".$lin['nm_aluno']."'>Editar</a> <a href='delete.php?nome=".$lin['nm_aluno']."'>Excluir</a><br/>";*/
+        }
+?>
+  <div class="container">
+    <h2>Formulário de cadastro</h2>
+    <form action="update.php" method="POST">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" value="<?=$lin['nm_aluno']?>">
+      </div>
+      <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input type="text" class="form-control" id="cpf" pattern="\d{11}" name="cpf" value="<?=$lin['cd_cpf']?>">
+      </div>
+       <div class="form-group">
+        <label for="nascimento">Data de Nascimento</label>
+        <input type="date" class="form-control" id="nascimento" name="nascimento" value="<?=$lin['dt_nascimento']?>">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="exemplo@gmail.com" name="email" value="<?=$lin['nm_email']?>">
+      </div>
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="ex: Jose123@gmail.com" name="email" value="<?= $email ?>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required/>
-            </div>
+      <div class="form-group">
+        <label for="user">username:</label>
+        <input type="text" class="form-control" id="user" name="user" value="<?=$lin['nm_usuario']?>">
+      </div>
 
-            <div class="form-group">
-                <label for="pwd">Senha:</label>
-                <input type="password" class="form-control" name="senha" id="password" pattern=".{6,}" placeholder="ex: abc123" required/>
-            </div>
 
-            <div class="form-group">
-                <label for="pwd">Confirmar Senha:</label>
-                <input type="password" class="form-control" name="confirmar_senha" id="confirm_password" required/>
-            </div>
+      <div class="form-group">
+      <label for="user">Endereço:</label>
+        <input type="text" class="form-control" id="user" name="user" value="<?=$lin['ds_endereco']?>">
+      </div>
+      <br/><button type="submit" class="btn btn-default">Gravar</button>
+    </form>
+  </div>
 
-            <br/><button type="submit" class="btn btn-default">Atualizar</button>
-            <button type="reset" class="btn btn-default">Limpar</button>
-        </form>
-        </div>
-    </div>
-</body>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+
+  </body>
 </html>
+<?php
+include('footer.php');
+?>
