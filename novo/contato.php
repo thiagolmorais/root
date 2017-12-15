@@ -1,6 +1,4 @@
 ﻿<?php
-include('header.php');
-
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'contato', time() + 3600);
@@ -73,6 +71,7 @@ include('header.php');
 </body></html>
 
 <?php
+include('header.php');
 include('footer.php');
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */

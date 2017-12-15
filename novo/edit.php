@@ -1,6 +1,4 @@
 <?php
-include('header.php');
-
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
         setcookie('cookie_sitio', 'edit', time() + 3600);
@@ -49,7 +47,7 @@ include('header.php');
         } else {
 
           // mysqli_query envia para o Mysql o texto de um comando SQL. No caso de Select, retorna a tabela resultante.
-          $tab = mysqli_query($con,"SELECT nm_aluno, cd_cpf, dt_nascimento, nm_email, nm_usuario, mn_genero,nm_curso, ds_endereco FROM aluno WHERE cd_aluno='{$_GET['cd_aluno']}'");
+          $tab = mysqli_query($con,"SELECT cd_aluno, nm_aluno, cd_cpf, dt_nascimento, nm_email, nm_usuario, mn_genero,nm_curso, ds_endereco FROM aluno WHERE cd_aluno='{$_GET['cd_aluno']}'");
           // Cada iteração do loop abaixo obtém uma linha da tabela resultante do Select e envia seus dados ao navegador. $lin é uma vetor com índices correspondendo ao nome das colunas (id, nome, endereco) e contéudo com seus respectivos dados.
 
           $lin = mysqli_fetch_assoc($tab);
@@ -60,32 +58,36 @@ include('header.php');
   <div class="container">
     <h2>Formulário de cadastro</h2>
     <form action="update.php" method="POST">
-      <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome" name="nome" value="<?=$lin['nm_aluno']?>">
+    <div class="form-group">
+        <label for="cd_aluno">Código do Aluno</label>
+        <input readonly="true" type="text" class="form-control" id="cd_aluno" name="cd_aluno" value="<?=$lin['cd_aluno']?>">
       </div>
       <div class="form-group">
-        <label for="cpf">CPF</label>
-        <input type="text" class="form-control" id="cpf" pattern="\d{11}" name="cpf" value="<?=$lin['cd_cpf']?>">
+        <label for="nm_aluno">Nome</label>
+        <input type="text" class="form-control" id="nm_aluno" name="nm_aluno" value="<?=$lin['nm_aluno']?>">
+      </div>
+      <div class="form-group">
+        <label for="cd_cpf">CPF</label>
+        <input readonly="true" type="text" class="form-control" id="cd_cpf" pattern="\d{11}" name="cd_cpf" value="<?=$lin['cd_cpf']?>">
       </div>
        <div class="form-group">
-        <label for="nascimento">Data de Nascimento</label>
-        <input type="date" class="form-control" id="nascimento" name="nascimento" value="<?=$lin['dt_nascimento']?>">
+        <label for="dt_nascimento">Data de Nascimento</label>
+        <input type="text" class="form-control" id="dt_nascimento" name="dt_nascimento" value="<?=$lin['dt_nascimento']?>">
       </div>
       <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="exemplo@gmail.com" name="email" value="<?=$lin['nm_email']?>">
+        <label for="nm_email">Email:</label>
+        <input readonly="true" type="email" class="form-control" id="nm_email" placeholder="exemplo@gmail.com" name="nm_email" value="<?=$lin['nm_email']?>">
       </div>
 
       <div class="form-group">
-        <label for="user">username:</label>
-        <input type="text" class="form-control" id="user" name="user" value="<?=$lin['nm_usuario']?>">
+        <label for="nm_usuario">username:</label>
+        <input type="text" class="form-control" id="nm_usuario" name="nm_usuario" value="<?=$lin['nm_usuario']?>">
       </div>
 
 
       <div class="form-group">
-      <label for="user">Endereço:</label>
-        <input type="text" class="form-control" id="user" name="user" value="<?=$lin['ds_endereco']?>">
+      <label for="ds_endereco">Endereço:</label>
+        <input type="text" class="form-control" id="ds_endereco" name="ds_endereco" value="<?=$lin['ds_endereco']?>">
       </div>
       <br/><button type="submit" class="btn btn-default">Gravar</button>
     </form>
@@ -112,5 +114,6 @@ include('header.php');
   </body>
 </html>
 <?php
+include('header.php');
 include('footer.php');
 ?>

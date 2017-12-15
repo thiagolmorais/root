@@ -1,6 +1,4 @@
-<?php
-include('header.php');
-?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -95,5 +93,6 @@ include('header.php');
   </body>
 </html>
 <?php
+include('header.php');
 include('footer.php');
 ?>

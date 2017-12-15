@@ -1,5 +1,5 @@
 <?php
-include('header.php');
+
 
     if (isset($_SESSION['usuario'])) {
         unset($_COOKIE['cookie_sitio']);
@@ -51,7 +51,7 @@ include('header.php');
         } else {
 
           // mysqli_query envia para o Mysql o texto de um comando SQL. No caso de Select, retorna a tabela resultante.
-          $tab = mysqli_query($con,"select cd_aluno, nm_aluno, cd_cpf, dt_nascimento, nm_email, nm_curso from aluno");
+          $tab = mysqli_query($con,"select cd_aluno, nm_aluno, cd_cpf, dt_nascimento, nm_email, nm_usuario, mn_genero, nm_curso, ds_endereco from aluno");
           // Cada iteração do loop abaixo obtém uma linha da tabela resultante do Select e envia seus dados ao navegador. $lin é uma vetor com índices correspondendo ao nome das colunas (id, nome, endereco) e contéudo com seus respectivos dados.
 
            /* echo $lin['nm_aluno']." - ".$lin['cd_cpf']." - ".$lin['dt_nascimento']." - ".$lin['nm_email']." - ".$lin['nm_curso']."
@@ -62,11 +62,15 @@ include('header.php');
     $tabela = '<table class="table table-striped">';//abre table
     $tabela .='<thead>';//abre cabeçalho
     $tabela .= '<tr>';//abre uma linha
+    $tabela .= '<th>Código</th>'; // colunas do cabeçalho
     $tabela .= '<th>Nome</th>'; // colunas do cabeçalho
     $tabela .= '<th>CPF</th>';
     $tabela .= '<th>Data de Nascimento</th>';
     $tabela .= '<th>Email</th>';
+    $tabela .= '<th>User Name</th>';
+    $tabela .= '<th>Genero</th>';
     $tabela .= '<th>Curso</th>';
+    $tabela .= '<th>Endereço</th>';
     $tabela .= '<th></th>';
     $tabela .= '<th></th>';
     $tabela .= '</tr>';//fecha linha
@@ -77,11 +81,15 @@ include('header.php');
 
 while ($lin = mysqli_fetch_assoc($tab)) {
     $tabela .= '<tr>'; // abre uma linha
+    $tabela .= '<td>'.$lin['cd_aluno'].'</td>'; //coluna numero
     $tabela .= '<td>'.$lin['nm_aluno'].'</td>'; //coluna numero
     $tabela .= '<td>'.$lin['cd_cpf'].'</td>'; // coluna validade
     $tabela .= '<td>'.$lin['dt_nascimento'].'</td>'; //coluna anexo
     $tabela .= '<td>'.$lin['nm_email'].'</td>';//coluna valor numero
+    $tabela .= '<td>'.$lin['nm_usuario'].'</td>';//coluna valor numero
+    $tabela .= '<td>'.$lin['mn_genero'].'</td>';//coluna valor numero
     $tabela .= '<td>'.$lin['nm_curso'].'</td>'; // coluna data
+    $tabela .= '<td>'.$lin['ds_endereco'].'</td>'; // coluna data
     $tabela .= "<td>
                     <a href='edit.php?cd_aluno={$lin['cd_aluno']}'>
                         <button class='btn btn-primary'>Editar</button>
@@ -125,7 +133,9 @@ while ($lin = mysqli_fetch_assoc($tab)) {
 </body></html>
 
 <?php
+include('header.php');
 include('footer.php');
+
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
 //header("location:register.php");
